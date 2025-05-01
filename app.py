@@ -1,31 +1,26 @@
-import os
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS  
 import boto3
 from werkzeug.utils import secure_filename
-from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# إعدادات AWS S3
+CORS(app)
+
 AWS_BUCKET_NAME = 'files-uplode'
 AWS_REGION = 'us-east-1'
 
-# إعدادات الملف المسموح به
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'txt'}
 
-# التحقق من امتداد الملفات
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# إعداد S3 client (باستخدام IAM Role)
 s3_client = boto3.client('s3', region_name=AWS_REGION)
 
-# مسار الصفحة الرئيسية
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# مسار رفع الملفات
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
