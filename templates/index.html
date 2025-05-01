@@ -4,28 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <h1>Upload your file here 👇🏻</h1>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <div class="container">
-            <div id="drop-zone">
-                <p>Browse file or drag and drop here</p>
-            </div>
-            <p id="mobile-message">Click browse to choose files</p>
-            <input type="file" id="file-input" name="file" required>
-            <button type="submit" id="browse-btn">Upload</button>
-            <div id="uploading-files">
-                <!-- uploaded files will be shown here-->
-            </div>
-        </div>
-    </form>
+    
+     <h1>Upload your file here 👇🏻</h1>
 
-    <div class="toast hidden" id="toast"></div>
+    <div class="container">
+     <div id="drop-zone">
+        <p>Browse file or drag and drop here</p>
+     </div>
+     <p id="mobile-message">Click browse to choose files</p>
+     <input type="file" id="file-input" hidden multiple>
+     <button id="browse-btn">Browse</button>
+
+     <div id="uploading-files">
+        <!-- uploaded files will be shown here-->
+      </div>
+    </div>
+
+    <div class="toast hidden" id = 'toast'></div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-</html>
+  </body>
+</html> 
