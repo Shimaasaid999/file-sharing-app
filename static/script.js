@@ -2,7 +2,7 @@ const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('file-input');
 const browseBtn = document.getElementById('browse-btn');
 const uploadingFilesContainer = document.getElementById('uploading-files');
-const api_url = 'http://98.83.204.195/upload'; //once it sent to me  change it
+const api_url = 'http://98.83.204.195:5000/upload';
 const allowedTypes = [
   'application/pdf',
   'image/jpeg',
