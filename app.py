@@ -19,10 +19,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # إعداد S3 client
-s3_client = boto3.client('s3', 
-                         aws_access_key_id=AWS_ACCESS_KEY, 
-                         aws_secret_access_key=AWS_SECRET_KEY, 
-                         region_name=AWS_REGION)
+s3_client = boto3.client('s3', region_name=AWS_REGION)
 
 # مسار رفع الملفات
 @app.route('/')
