@@ -1,15 +1,9 @@
 import os
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, render_template
 import boto3
 from werkzeug.utils import secure_filename
 
-from flask import Flask, render_template
-
 app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 # إعدادات AWS S3
 AWS_ACCESS_KEY = 'AKIAZALAU5PAGNDO6KBH'
@@ -31,6 +25,10 @@ s3_client = boto3.client('s3',
                          region_name=AWS_REGION)
 
 # مسار رفع الملفات
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
@@ -50,9 +48,9 @@ def upload_file():
     else:
         return jsonify({"message": "Invalid file type"}), 400
 
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
+
 
     
     
